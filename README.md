@@ -1,10 +1,10 @@
 # WALLET MICROSERVICE
 
-A simple wallet microservice running on the JVM that manages credit/debit transactions.
+A wallet microservice running on the JVM that manages wallet credit/debit transactions.
 
 
 ## Description
-A Rest API to access monetary accounts with the current balance of a user.
+A Wallet Rest API to access wallet accounts with the current balance and transaction of a user.
 The balance can be modified by registering transactions on the account, either debit transactions (removing funds) 
 or credit transactions (adding funds).
 
@@ -16,32 +16,25 @@ Unique global transaction id must be provided when registering a transaction on 
 It is also possible to fetch the users accounts and get current balance.
 
 ## Api requirements and running instructions
-1. Java 8
+1. Java 23
 2. Maven 3 to build the application.
 This will activate Flyway to run db creation scripts. 
-3. Download and install PostgreSQL server (version 9.5 or higher).
+3. The Wallet project use an Embedded H2 Database.
 It is available here:
-https://www.postgresql.org/download/
+   https://docs.spring.io/spring-boot/reference/data/sql.html
 
-Client can be installed from https://www.pgadmin.org/download/ for example
+Client can be installed from https://squirrel-sql.sourceforge.io/ for example
 
-4. Connect to the Postgres server and create database -  wallet.
-5. For the database wallet create schema  - schema_wallet, using SQL:
+4. Database will be initialized automatically when the Application starts.
+5. For the database wallet configuration in application.properties:
 ```
-CREATE SCHEMA schema_wallet AUTHORIZATION postgres;
+# setup local h2 database config
+spring.datasource.url=jdbc:h2:file:./data/wallet
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=admin
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
  ```
-The user, schema and database can be different, but then it needs to be configured in the
-``` 
-wallet-microservice/src/main/resources/application.properties
-```
-See
-```
-spring.datasource.url = jdbc:postgresql://localhost:5432/wallet
-spring.datasource.username = postgres
-spring.datasource.password = postgres
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.jpa.properties.hibernate.default_schema = schema_wallet
-```
 6. From the root folder of the application run:
 ``` 
 mvn clean install
