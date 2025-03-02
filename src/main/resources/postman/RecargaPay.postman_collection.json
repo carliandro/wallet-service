@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "3b59728c-3ead-4bbe-8fbe-7a46790b62b1",
+		"name": "RecargaPay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "319188"
+	},
+	"item": [
+		{
+			"name": "create wallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"currency\":\"EUR\",\n\"userId\":\"new-user\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/wallets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get wallets by user id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Typ",
+						"value": "application/json"
+					},
+					{
+						"key": "userId",
+						"value": "user1"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/wallets/user?userId=user1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets",
+						"user"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "user1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all wallets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Typ",
+						"value": "application/json"
+					},
+					{
+						"key": "userId",
+						"value": "user1"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/wallets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get wallet by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Typ",
+						"value": "application/json"
+					},
+					{
+						"key": "userId",
+						"value": "user1"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/wallets/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get transactions by wallet id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Typ",
+						"value": "application/json"
+					},
+					{
+						"key": "userId",
+						"value": "user1"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/wallets/1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets",
+						"1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create credit transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"globalId\":\"557\",\n\"currency\":\"EUR\",\n\"walletId\": \"2\",\n\"amount\":\"50\",\n\"transactionTypeId\":\"C\",\n\"description\":\"add money\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create debit transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"globalId\":\"558\",\n\"currency\":\"EUR\",\n\"walletId\": \"2\",\n\"amount\":\"20\",\n\"transactionTypeId\":\"D\",\n\"description\":\"add money\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get history wallet",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
