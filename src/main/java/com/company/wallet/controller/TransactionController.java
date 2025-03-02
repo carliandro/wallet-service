@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Restful controller for managing wallet transactions
+ * Restful controller for managing wallet RecargaPay wallet transactions
  *
  * @author Carlianddro Cavalcanti
  */
@@ -53,7 +53,7 @@ public class TransactionController {
      * <p>
      * Example of  credit transaction JSON body
      * {"globalId":"123","currency":"EUR","walletId": "1","transactionTypeId":"C","amount":"100","description":"add money"}
-     *
+
      * Example of debit transaction JSON body
      * {"globalId":"123","currency":"EUR","walletId": "1","transactionTypeId":"D","amount":"100","description":"withdraw money"}
      * </p>
