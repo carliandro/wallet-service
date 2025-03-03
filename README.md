@@ -67,10 +67,11 @@ see 'server.port' property
 
 ## Api endpoints
 Examples of all requests can be found in:
+Import the json file to Postman and use the follows endpoints to test.
 ``` 
 RecargaPay.postman_collection.json
 ```
-Import the json file to Postman and use the follows endpoints to test.
+
 
 Http GET endpoints:
 1. http://localhost:8090/wallets
