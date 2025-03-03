@@ -23,7 +23,7 @@ This will activate Flyway to run db creation scripts.
 It is available here:
    https://docs.spring.io/spring-boot/reference/data/sql.html
 
-Client can be installed from https://squirrel-sql.sourceforge.io/ for example
+Client can be installed from https://squirrel-sql.sourceforge.io/ 
 
 4. Database will be initialized automatically when the Application starts.
 5. For the database wallet configuration in application.properties:
@@ -55,12 +55,13 @@ Intellij for example:
 Go to File > Open > directory that you cloned the application.
  ```
 7. Start application:
-``` 
+```
+All tables, reference data will be created and inserted by Flyway.
+```
+```
 mvn spring-boot:run or use the IDE
 ``` 
-All tables, reference data will be created and inserted by Flyway.
-
-8. To check that application started successfully go to:
+8. To check that application started successfully access http://localhost:8090:
 ``` 
 http://localhost:8090/
 ``` 
