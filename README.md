@@ -135,12 +135,12 @@ Creates transaction.
 
 ## Technology used
 
-- PostgreSQL database, which has good concurrency support, also has ACID compliance and can be replicated.
+- H2 database.
 - Spring Boot, including Spring Data JPA for JPA based repositories.
-- Undertow, a web server to run the application.
 - Flyway,tool db migration
 - logback + slf4j for logging.
 - Gson from com.google.code.gson to serialize objects to JSON.
+- 
 
 ## Support of the aspects:
 
@@ -151,20 +151,15 @@ As well as unique globalIds for wallet transactions.
 with Database server running on it own host/hosts(can be distributed).
 Load balancer (e.g. NGINX) will share requests between the application instances and provide high-availability.
 Shared cache can be configured for Spring application. For example,
-Spring supports Reddis, which can be used as shared cache. 
+Spring supports Redis, which can be used as shared cache. 
 But since this application is targeted on transactions creation, it might not be useful,
 because we have to update cache too often.
 
 ## Features not implemented
-1. Security (Information Exchange)
-Can be implemented using JWT.
-2. Authentication
-Can be put on the NGINX level,if used.
-Or using Spring Security.
-3. Authorization
-Can be implemented using JWT.
-4. Scaling
-Can be implemented using cloud provider like AWS.
+1. Security (Information Exchange) - Can be implemented using JWT.
+2. Authentication - Can be used Spring Security.
+3. Authorization - Can be implemented using JWT.
+4. Scaling - Can be implemented using cloud provider like AWS Auto Scaling.
 
 
 
