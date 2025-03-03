@@ -35,6 +35,9 @@ spring.datasource.username=admin
 spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
  ```
+Obs: If you want to use a database client you need make the client configuration.
+The database file will be created in jdbc:h2:file:~/data/wallet
+You can import database from you preferred client.
 6. Open your IDE and import project:
 7. Start application:
 ``` 
@@ -60,7 +63,8 @@ see 'server.port' property
 Examples of all requests can be found in:
 ``` 
 RecargaPay.postman_collection.json
-``` 
+```
+Import the json file to Postman and use the follows endpoints to test.
 
 Http GET endpoints:
 1. http://localhost:8090/wallets
@@ -96,6 +100,7 @@ The currency id should be present in the reference table 'currency'.
 
 2. http://localhost:8080/transactions
 With the following JSON in the body:
+Generate a globalId on 
 ``` 
 {"globalId":"b7e7fa0c-f71b-11ef-9cd2-0242ac120002",
 "currency":"EUR",
