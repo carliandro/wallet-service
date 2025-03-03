@@ -33,3 +33,4 @@ build/
 .vscode/
 
 data/
+/out/artifacts/recargapay_wallet_service_jar/recargapay-wallet-service.jar
