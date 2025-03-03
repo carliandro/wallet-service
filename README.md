@@ -35,9 +35,11 @@ spring.datasource.username=admin
 spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
  ```
+ ```
 Obs: If you want to use a database client you need make the client configuration.
 The database file will be created in jdbc:h2:file:~/data/wallet
 You can import database from you preferred client.
+ ```
 6. Open your IDE and import project:
 7. Start application:
 ``` 
