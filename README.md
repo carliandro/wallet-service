@@ -40,6 +40,15 @@ Obs: If you want to use a database client you need make the client configuration
 The database file will be created in jdbc:h2:file:~/data/wallet
 You can import database from you preferred client.
  ```
+6. Observability
+ ```
+   run the follow command if you have docker in your computer. if no follow the steps:
+   https://docs.docker.com/desktop/setup/install/windows-install/
+   
+   And after: 
+   docker run -d -p 9411:9411 openzipkin/zipkin-slim
+   
+ ```
 6. Open your IDE and import project:
 ```
 Intellij for example:
@@ -71,8 +80,6 @@ Import the json file to Postman and use the follows endpoints to test.
 ``` 
 RecargaPay.postman_collection.json
 ```
-
-
 Http GET endpoints:
 1. http://localhost:8090/wallets
 Gets all wallets
@@ -80,6 +87,9 @@ Some wallets are generated after the first start of the application by Flyway.
 
 2. http://localhost:8090/wallets/{id}
 Gets wallet with transactions
+
+3. http://localhost:8090/wallets/user?userId=user1
+Gets wallet with transactions by user id
 
 4. http://localhost:8080/wallets/{id}/transactions
 Gets list of transactions by wallet id
