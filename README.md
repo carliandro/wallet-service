@@ -35,57 +35,47 @@ spring.datasource.username=admin
 spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
  ```
-6. From the root folder of the application run:
+6. Open your IDE and import project:
+7. Start application:
 ``` 
-mvn clean install
+mvn spring-boot:run or use the IDE
 ``` 
-7. Start application by:
-``` 
-mvn spring-boot:run
-``` 
-All tables, reference data and some dummy data will be created and inserted by Flyway.
+All tables, reference data will be created and inserted by Flyway.
 
-Or instead you can run the jar file and run scripts manually against schema_wallet:
-``` 
-java -jar target/wallet-microservice-1.0-SNAPSHOT.jar
-``` 
 8. To check that application started successfully go to:
 ``` 
-http://localhost:8080/test
+http://localhost:8090/
 ``` 
 This should produce result:
 ``` 
-Hello from wallet microservice!
+Wallet Microservice!
 ``` 
 The port can be also configured from 
 ``` 
-wallet-microservice/src/main/resources/application.properties
+recargapay-wallet-service/src/main/resources/application.properties
 ```
 see 'server.port' property
 
 ## Api endpoints
 Examples of all requests can be found in:
 ``` 
-wallet-microservice/src/main/resources/examples/wallet.postman_collection.json
+RecargaPay.postman_collection.json
 ``` 
 
 Http GET endpoints:
-1. http://localhost:8080/wallets
+1. http://localhost:8090/wallets
 Gets all wallets
 Some wallets are generated after the first start of the application by Flyway.
 
-2. http://localhost:8080/wallets/{id}
+2. http://localhost:8090/wallets/{id}
 Gets wallet with transactions
-
-3. http://localhost:8080/wallets/user?userId={user}
-Gets list of wallets by user
 
 4. http://localhost:8080/wallets/{id}/transactions
 Gets list of transactions by wallet id
 Some transactions are generated after the first start of the application by Flyway.
 
 Http POST endpoints:
-1. http://localhost:8080/wallets
+1. http://localhost:8090/wallets
 With the following JSON in the body:
 ``` 
 {
@@ -107,7 +97,7 @@ The currency id should be present in the reference table 'currency'.
 2. http://localhost:8080/transactions
 With the following JSON in the body:
 ``` 
-{"globalId":"557",
+{"globalId":"b7e7fa0c-f71b-11ef-9cd2-0242ac120002",
 "currency":"EUR",
 "walletId": "2",
 "amount":"20",
@@ -146,35 +136,24 @@ Creates transaction.
 1. Transactions on service and repository level ensure atomicity.
 2. Identifiers for entities and primary keys in the db ensure idempotency. 
 As well as unique globalIds for wallet transactions.
-3. Scalability: This can be solved by installing wallet microservice application on several hosts, 
-with Postgres server running on it own host/hosts(can be distributed).
+3. Scalability: This can be solved by installing recargapay-wallet-service application on several hosts, 
+with Database server running on it own host/hosts(can be distributed).
 Load balancer (e.g. NGINX) will share requests between the application instances and provide high-availability.
 Shared cache can be configured for Spring application. For example,
 Spring supports Reddis, which can be used as shared cache. 
 But since this application is targeted on transactions creation, it might not be useful,
 because we have to update cache too often.
-4. Concurrency:
-Postgres has good concurrency support.
-Undertow threads count can be configured in the application.properties.
-``` 
-server.undertow.worker-threads
-server.undertow.io-threads
-``` 
-This numbers should be configured based on the properties of particular host, where the application runs.
-In the application there are no shared objects, so there should not be concurrency issues.
 
 ## Features not implemented
 1. Security (Information Exchange)
-
 Can be implemented using JWT.
 2. Authentication
- 
 Can be put on the NGINX level,if used.
 Or using Spring Security.
 3. Authorization
-
 Can be implemented using JWT.
-
+4. Scaling
+Can be implemented using cloud provider like AWS.
 
 
 

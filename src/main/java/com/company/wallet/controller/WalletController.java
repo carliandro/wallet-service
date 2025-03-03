@@ -33,6 +33,11 @@ class WalletController {
     @Autowired
     private Helper inputParametersValidator;
 
+    @GetMapping()
+    public String getWelcome(){
+        return "Wallet Microservice!";
+    }
+
     @GetMapping(
     value = "/wallets",
     produces = MediaType.APPLICATION_JSON_VALUE

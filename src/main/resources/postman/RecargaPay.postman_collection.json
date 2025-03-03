@@ -49,7 +49,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/wallets/user?userId=user1",
+						"raw": "http://localhost:8080/wallets/user?userId=user1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,12 +84,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/wallets",
+					"raw": "http://localhost:8090/wallets",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"wallets"
 					]
@@ -112,12 +112,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/wallets/1",
+					"raw": "http://localhost:8090/wallets/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"wallets",
 						"1"
@@ -141,12 +141,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/wallets/1/transactions",
+					"raw": "http://localhost:8090/wallets/1/transactions",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"wallets",
 						"1",
@@ -171,12 +171,12 @@
 					"raw": "{\"globalId\":\"557\",\n\"currency\":\"EUR\",\n\"walletId\": \"2\",\n\"amount\":\"50\",\n\"transactionTypeId\":\"C\",\n\"description\":\"add money\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/transactions",
+					"raw": "http://localhost:8090/transactions",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"transactions"
 					]
@@ -199,12 +199,12 @@
 					"raw": "{\"globalId\":\"558\",\n\"currency\":\"EUR\",\n\"walletId\": \"2\",\n\"amount\":\"20\",\n\"transactionTypeId\":\"D\",\n\"description\":\"add money\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/transactions",
+					"raw": "http://localhost:8090/transactions",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"transactions"
 					]
