@@ -40,15 +40,6 @@ Obs: If you want to use a database client you need make the client configuration
 The database file will be created in jdbc:h2:file:~/data/wallet
 You can import database from you preferred client.
  ```
-6. Observability
- ```
-   run the follow command if you have docker in your computer. if no follow the steps:
-   https://docs.docker.com/desktop/setup/install/windows-install/
-   
-   And after: 
-   docker run -d -p 9411:9411 openzipkin/zipkin-slim
-   
- ```
 6. Open your IDE and import project:
 ```
 Intellij for example:
@@ -75,6 +66,18 @@ recargapay-wallet-service/src/main/resources/application.properties
 ```
 see 'server.port' property
 
+7. Observability
+ ```
+   Run the command if you have docker in your computer. if no follow the steps:
+   https://docs.docker.com/desktop/setup/install/windows-install/
+   
+   Run the command:  
+   docker run -d -p 9411:9411 openzipkin/zipkin-slim
+   
+   Access http://localhost:9411/
+   
+   Ex: Create wallet using postman and after Run Query on Zipkin
+``` 
 ## Api endpoints
 Examples of all requests can be found in:
 Import the json file to Postman and use the follows endpoints to test.
@@ -117,7 +120,7 @@ Will create new wallet with currency EUR and userId=new-user.
 The currency id should be present in the reference table 'currency'.
 
 2. http://localhost:8080/transactions
-With the following JSON in the body:
+Use the following JSON in the body:
 Generate a globalId on 
 ``` 
 {"globalId":"b7e7fa0c-f71b-11ef-9cd2-0242ac120002",
