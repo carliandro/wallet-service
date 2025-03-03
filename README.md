@@ -41,6 +41,10 @@ The database file will be created in jdbc:h2:file:~/data/wallet
 You can import database from you preferred client.
  ```
 6. Open your IDE and import project:
+```
+Intellij for example:
+Go to File > Open > directory that you cloned the application.
+ ```
 7. Start application:
 ``` 
 mvn spring-boot:run or use the IDE
