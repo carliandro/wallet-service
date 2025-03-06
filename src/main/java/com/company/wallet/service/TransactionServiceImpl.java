@@ -10,10 +10,8 @@ import com.company.wallet.helper.Helper;
 import com.company.wallet.repository.CurrencyRepository;
 import com.company.wallet.repository.TransactionRepository;
 import com.company.wallet.repository.TransactionTypeRepository;
-import io.micrometer.observation.annotation.Observed;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.apache.catalina.mapper.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import static com.company.wallet.exceptions.ErrorMessage.NUMBER_FORMAT_MISMATCH;
@@ -64,7 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
         logger.info("Called TrasactionServiceImpl.getTransactionsByWalletId with walletlId={}", walletId);
         WalletEntity wallet = walletService.findById(walletId);
         if(wallet != null) {
-            return transactionRepository.findByWallet(wallet);
+            return transactionRepository.findByWallet(wallet).stream().toList();
         } else {
             throw new WalletException(String.format(ErrorMessage.NO_WALLET_FOUND,walletId.toString()), HttpStatus.BAD_REQUEST.value());
         }
@@ -96,7 +95,6 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE, rollbackFor = WalletException.class)
     public TransactionEntity createTransaction(@NotBlank String globalId, @NotBlank  String currencyName, @NotBlank String walletId, @NotBlank String transactionTypeId, @NotBlank String amount, String description) throws WalletException{
         logger.info("Called TrasactionServiceImpl.createTrasaction with globalId={}", globalId);
-        //Check for unique transaction globalId happens due to entity constrains on Transaction.globalId (unique=true)
 
         //Get currency reference
         CurrencyEntity currency = currencyRepository.findByName(currencyName);

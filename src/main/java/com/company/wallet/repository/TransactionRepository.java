@@ -6,6 +6,7 @@ import com.company.wallet.exceptions.WalletException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Integer> {
     List<TransactionEntity> findByWallet(WalletEntity wallet);
     TransactionEntity findByGlobalId(String globalId);
+    List<TransactionEntity> findAllByLastUpdatedBetween(Date lastUpdatedStart, Date lastUpdatedEnd);
 }
