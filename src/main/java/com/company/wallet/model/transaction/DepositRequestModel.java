@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DepositRequestModel {
     @NotNull(message = "Card number is required")
-    private String walletId;
+    private String card_number;
 
     @NotNull(message = "Amount is required")
     @Min(value = 0, message = "Amount can't be negative")
