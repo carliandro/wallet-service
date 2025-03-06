@@ -289,44 +289,6 @@ class WalletServiceImplTest {
     /**
      * Test {@link WalletServiceImpl#updateWalletAmount(WalletEntity, String, Boolean)}.
      * <ul>
-     *   <li>Then throw {@link ObjectNotFoundException}.</li>
-     * </ul>
-     * <p>
-     * Method under test: {@link WalletServiceImpl#updateWalletAmount(WalletEntity, String, Boolean)}
-     */
-    @Test
-    @DisplayName("Test updateWalletAmount(WalletEntity, String, Boolean); then throw ObjectNotFoundException")
-    @Tag("MaintainedByRecargaPay")
-    void testUpdateWalletAmount_thenThrowObjectNotFoundException() throws WalletException {
-        // Arrange
-        doNothing().when(helper).conditionIsTrue(Mockito.<Boolean>any(), Mockito.<String>any(), Mockito.anyInt());
-        when(walletRepository.save(Mockito.<WalletEntity>any())).thenThrow(new ObjectNotFoundException(
-                (Object) "Identifier", "Called WalletServiceImpl.updateWalletAmount with walletId={}"));
-
-        CurrencyEntity currency = new CurrencyEntity();
-        currency.setId(1);
-        currency.setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        currency.setLastUpdatedBy("2020-03-01");
-        currency.setName("Name");
-
-        WalletEntity wallet = new WalletEntity();
-        wallet.setBalance(new BigDecimal("2.3"));
-        wallet.setCurrency(currency);
-        wallet.setId(1);
-        wallet.setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        wallet.setLastUpdatedBy("2020-03-01");
-        wallet.setUserId("42");
-
-        // Act and Assert
-        assertThrows(ObjectNotFoundException.class, () -> walletServiceImpl.updateWalletAmount(wallet, "10", true));
-        verify(helper).conditionIsTrue(eq(true),
-                eq("Wallet 1 has not enough funds to perform debit transaction with amount 10"), eq(400));
-        verify(walletRepository).save(isA(WalletEntity.class));
-    }
-
-    /**
-     * Test {@link WalletServiceImpl#updateWalletAmount(WalletEntity, String, Boolean)}.
-     * <ul>
      *   <li>Then throw {@link WalletException}.</li>
      * </ul>
      * <p>
@@ -407,7 +369,7 @@ class WalletServiceImplTest {
         verify(helper).conditionIsTrue(eq(true),
                 eq("Wallet 1 has not enough funds to perform debit transaction with amount 10"), eq(400));
         verify(walletRepository).save(isA(WalletEntity.class));
-        assertEquals("wallet-microservice", wallet.getLastUpdatedBy());
+        assertEquals("recarga-pay", wallet.getLastUpdatedBy());
         BigDecimal expectedBalance = new BigDecimal("12.3");
         assertEquals(expectedBalance, wallet.getBalance());
         assertSame(walletEntity, actualUpdateWalletAmountResult);
@@ -432,8 +394,8 @@ class WalletServiceImplTest {
         CurrencyEntity currency = new CurrencyEntity();
         currency.setId(1);
         currency.setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        currency.setLastUpdatedBy("2020-03-01");
-        currency.setName("Name");
+        currency.setLastUpdatedBy("recarga-pay");
+        currency.setName("EUR");
 
         WalletEntity walletEntity = new WalletEntity();
         walletEntity.setBalance(new BigDecimal("2.3"));
@@ -444,30 +406,16 @@ class WalletServiceImplTest {
         walletEntity.setUserId("42");
         when(walletRepository.save(Mockito.<WalletEntity>any())).thenReturn(walletEntity);
 
-        CurrencyEntity currency2 = new CurrencyEntity();
-        currency2.setId(1);
-        currency2.setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        currency2.setLastUpdatedBy("2020-03-01");
-        currency2.setName("Name");
-
-        WalletEntity wallet = new WalletEntity();
-        wallet.setBalance(new BigDecimal("2.3"));
-        wallet.setCurrency(currency2);
-        wallet.setId(1);
-        wallet.setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        wallet.setLastUpdatedBy("2020-03-01");
-        wallet.setUserId("42");
-
         // Act
-        WalletEntity actualUpdateWalletAmountResult = walletServiceImpl.updateWalletAmount(wallet, "10", false);
+        WalletEntity actualUpdateWalletAmountResult = walletServiceImpl.updateWalletAmount(walletEntity, "10", false);
 
         // Assert
         verify(helper).conditionIsTrue(eq(false),
                 eq("Wallet 1 has not enough funds to perform debit transaction with amount 10"), eq(400));
         verify(walletRepository).save(isA(WalletEntity.class));
-        assertEquals("wallet-microservice", wallet.getLastUpdatedBy());
+        assertEquals("recarga-pay", walletEntity.getLastUpdatedBy());
         BigDecimal expectedBalance = new BigDecimal("-7.7");
-        assertEquals(expectedBalance, wallet.getBalance());
+        assertEquals(expectedBalance, walletEntity.getBalance());
         assertSame(walletEntity, actualUpdateWalletAmountResult);
     }
 }

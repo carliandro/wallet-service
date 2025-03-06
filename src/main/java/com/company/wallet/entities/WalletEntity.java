@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,6 +20,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "wallet")

@@ -1,5 +1,4 @@
 # WALLET MICROSERVICE
-
 A wallet microservice running on the JVM that manages wallet credit/debit transactions.
 
 
@@ -66,7 +65,7 @@ recargapay-wallet-service/src/main/resources/application.properties
 ```
 see 'server.port' property
 
-7. Observability
+9. Observability
  ```
    Run the command if you have docker in your computer. if no follow the steps:
    https://docs.docker.com/desktop/setup/install/windows-install/
@@ -80,7 +79,7 @@ see 'server.port' property
 ``` 
 ## Api endpoints
 Examples of all requests can be found in:
-Import the json file to Postman and use the follows endpoints to test.
+Import the json file located on the root diretory to Postman and use the follows endpoints to test.
 ``` 
 RecargaPay.postman_collection.json
 ```
@@ -95,7 +94,7 @@ Gets wallet with transactions
 3. http://localhost:8090/wallets/user?userId=user1
 Gets wallet with transactions by user id
 
-4. http://localhost:8080/wallets/{id}/transactions
+4. http://localhost:8090/wallets/{id}/transactions
 Gets list of transactions by wallet id
 Some transactions are generated after the first start of the application by Flyway.
 
@@ -119,9 +118,9 @@ e.g.
 Will create new wallet with currency EUR and userId=new-user.
 The currency id should be present in the reference table 'currency'.
 
-2. http://localhost:8080/transactions
+2. http://localhost:8090/transactions
 Use the following JSON in the body:
-Generate a globalId on 
+Generate a globalId on https://www.uuidgenerator.net/version1
 ``` 
 {"globalId":"b7e7fa0c-f71b-11ef-9cd2-0242ac120002",
 "currency":"EUR",
@@ -154,8 +153,6 @@ Creates transaction.
 - Spring Boot, including Spring Data JPA for JPA based repositories.
 - Flyway,tool db migration
 - logback + slf4j for logging.
-- Gson from com.google.code.gson to serialize objects to JSON.
-- 
 
 ## Support of the aspects:
 

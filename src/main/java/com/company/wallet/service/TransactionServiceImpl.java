@@ -121,7 +121,17 @@ public class TransactionServiceImpl implements TransactionService {
         //Create transaction
         TransactionEntity transaction = new TransactionEntity(globalId,transactionType,new BigDecimal(amount),wallet,currency,description,updatedBy);
 
-        return transactionRepository.save(transaction);
+        return transactionRepository.save(
+                    TransactionEntity.builder()
+                            .globalId(globalId)
+                            .type(transactionType)
+                            .amount(new BigDecimal(amount))
+                            .wallet(wallet)
+                            .currency(currency)
+                            .description(description)
+                            .lastUpdatedBy(updatedBy)
+                            .build()
+                );
 
     }
 }

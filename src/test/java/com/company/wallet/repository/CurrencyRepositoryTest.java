@@ -39,14 +39,14 @@ class CurrencyRepositoryTest {
         currencyEntity.setId(1);
         currencyEntity
                 .setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        currencyEntity.setLastUpdatedBy("2020-03-01");
+        currencyEntity.setLastUpdatedBy("recarga-pay");
         currencyEntity.setName("Name");
 
         CurrencyEntity currencyEntity2 = new CurrencyEntity();
         currencyEntity2.setId(2);
         currencyEntity2
                 .setLastUpdated(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        currencyEntity2.setLastUpdatedBy("2020/03/01");
+        currencyEntity2.setLastUpdatedBy("recarga-pay");
         currencyEntity2.setName("42");
         currencyRepository.save(currencyEntity);
         currencyRepository.save(currencyEntity2);

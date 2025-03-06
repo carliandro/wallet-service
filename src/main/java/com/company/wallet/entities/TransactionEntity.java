@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "transaction")
 @EntityListeners(AuditingEntityListener.class)
 public class TransactionEntity {
@@ -56,6 +58,7 @@ public class TransactionEntity {
 
     @Column(name = "last_updated")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
     private Date lastUpdated;
 
     @Column(name = "last_updated_by")

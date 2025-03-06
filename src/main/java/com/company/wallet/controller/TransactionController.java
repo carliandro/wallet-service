@@ -35,11 +35,11 @@ public class TransactionController {
     private Helper inputParametersValidator;
 
     @GetMapping(
-            value = "/wallets/{id}/transactions",
+            value = "/transactions/wallets/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseBody
-    public String getWalletTransactionsById( @PathVariable("id") int id) throws WalletException, ClassNotFoundException {
+    public String getTransactionsByWalletId( @PathVariable("id") int id) throws WalletException, ClassNotFoundException {
         logger.info("Called TransactionController.getWalletTransactionsById with parameter walletId={}",id);
         List<TransactionEntity> transactionList = transactionService.getTransactionsByWalletId(id);
         return new GsonBuilder().
@@ -60,7 +60,6 @@ public class TransactionController {
      *                {"globalId":"123","currency":"EUR","walletId": "1","transactionTypeId":"C","amount":"100","description":"add money"}
      * @return created transaction in JSON format
      * @throws WalletException when couldn't create transaction (e.g. globalId not unique, not enough funds on wallet balance, etc.)
-     * @throws ClassNotFoundException
      */
 
     @PostMapping(
@@ -70,6 +69,7 @@ public class TransactionController {
     @ResponseBody
     public String createWalletTransaction(@Valid @RequestBody TransactionModel transactionModel) throws WalletException, ClassNotFoundException {
         logger.info("Called TransactionController.createWalletTransaction with parameter trasactionGlobalId={}", transactionModel.getGlobalId() );
+
         TransactionEntity transaction = transactionService.createTransaction(transactionModel.getGlobalId(),transactionModel.getCurrency(),transactionModel.getWalletId(),
                 transactionModel.getTransactionTypeId(),transactionModel.getAmount(),transactionModel.getDescription());
 

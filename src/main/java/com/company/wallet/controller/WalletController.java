@@ -80,7 +80,6 @@ class WalletController {
      * @throws WalletException when failed to create wallet
      */
     @PostMapping(value = "/wallets",  produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public String createWallet(@Valid @RequestBody WalletModel walletModel) throws WalletException {
         logger.info("Called WalletController.createWallet with userId={}", walletModel.getUserId());
         WalletEntity wallet = walletService.createWallet(walletModel.getUserId(),walletModel.getCurrency());

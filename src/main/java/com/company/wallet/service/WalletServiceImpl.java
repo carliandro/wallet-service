@@ -92,7 +92,15 @@ import java.util.Optional;
             CurrencyEntity currency = currencyRepository.findByName(currencyName);
             String error = String.format(ErrorMessage.NO_CURRENCY_PRESENT,currencyName);
             inputParametersValidator.conditionIsTrue(currency != null,error,HttpStatus.BAD_REQUEST.value());
-            return walletRepository.save(new WalletEntity(userId, currency, new BigDecimal(0), updatedBy));
+            return walletRepository.save(
+                    WalletEntity.builder()
+                            .userId(userId)
+                            .currency(currency)
+                            .balance(new BigDecimal(0))
+                            .lastUpdatedBy(updatedBy)
+                            .build());
+
+
         } catch (ObjectNotFoundException e){
             throw new WalletException(String.format(ErrorMessage.NO_CURRENCY_PRESENT,currencyName),HttpStatus.BAD_REQUEST.value());
         }
