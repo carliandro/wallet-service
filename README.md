@@ -29,7 +29,7 @@ Client can be installed from https://squirrel-sql.sourceforge.io/
 5. For the database wallet configuration in application.properties:
 ```
 # setup local h2 database config
-spring.datasource.url=jdbc:h2:file:./data/wallet
+spring.datasource.url=jdbc:h2:file:~/data/wallet
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=admin
 spring.datasource.password=password
